@@ -1,0 +1,1753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="feedbackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="shop" Type="varchar" MaxLength="10" />
+          <Property Name="process" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="AreaCategories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idArea" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ColorCodes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="color" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoordinatesReference">
+          <Key>
+            <PropertyRef Name="idCoordinate" />
+          </Key>
+          <Property Name="idCoordinate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArea" Type="int" Nullable="false" />
+          <Property Name="Side" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="xmin" Type="float" Nullable="false" />
+          <Property Name="xmax" Type="float" Nullable="false" />
+          <Property Name="ymin" Type="float" Nullable="false" />
+          <Property Name="ymax" Type="float" Nullable="false" />
+          <Property Name="idLocation" Type="int" Nullable="false" />
+          <Property Name="position" Type="int" />
+          <Property Name="version" Type="int" />
+        </EntityType>
+        <EntityType Name="countermeasures">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="model" Type="int" Nullable="false" />
+          <Property Name="part" Type="int" Nullable="false" />
+          <Property Name="defect" Type="int" Nullable="false" />
+          <Property Name="location" Type="int" />
+          <Property Name="coordinate" Type="int" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="responsible" Type="int" Nullable="false" />
+          <Property Name="countermeasure" Type="varchar" MaxLength="300" />
+          <Property Name="duedate" Type="date" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="regdt" Type="date" Nullable="false" />
+          <Property Name="requestedby" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="cfile" Type="varbinary(max)" />
+          <Property Name="approveddt" Type="date" />
+          <Property Name="approvedby" Type="varchar" MaxLength="255" />
+          <Property Name="process" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="300" />
+          <Property Name="bodyno" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="defects">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seq" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="active" Type="int" />
+          <Property Name="shop" Type="varchar" MaxLength="10" />
+          <Property Name="process" Type="varchar" MaxLength="20" />
+          <Property Name="idArea" Type="int" />
+        </EntityType>
+        <EntityType Name="FEEDBACK_DATA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CAR_TYPE" Type="int" Nullable="false" />
+          <Property Name="BODY_NO" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="PART" Type="int" Nullable="false" />
+          <Property Name="DEFECT" Type="int" Nullable="false" />
+          <Property Name="LOCATION" Type="int" Nullable="false" />
+          <Property Name="ROUND" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="RESPONSIBLE" Type="varchar" MaxLength="50" />
+          <Property Name="PROCESS" Type="varchar" MaxLength="10" />
+          <Property Name="STDT" Type="date" />
+          <Property Name="ENDT" Type="date" Nullable="false" />
+          <Property Name="RGDT" Type="datetime" Nullable="false" />
+          <Property Name="COMMENT" Type="varchar" MaxLength="100" />
+          <Property Name="PICTURE" Type="varchar" MaxLength="50" />
+          <Property Name="PICTUREPATH" Type="varchar" MaxLength="100" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RESPID" Type="int" />
+          <Property Name="USERID" Type="varchar" MaxLength="255" />
+          <Property Name="SCREENID" Type="int" />
+          <Property Name="AREA" Type="int" />
+          <Property Name="SHIFT" Type="int" />
+          <Property Name="SIDE" Type="varchar" MaxLength="5" />
+          <Property Name="IDCOORD" Type="int" />
+          <Property Name="IDCOLOR" Type="int" />
+          <Property Name="LINE" Type="int" />
+        </EntityType>
+        <EntityType Name="locations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seq" Type="int" Nullable="false" />
+          <Property Name="partId" Type="int" />
+          <Property Name="active" Type="int" Nullable="false" />
+          <Property Name="shop" Type="varchar" MaxLength="10" />
+          <Property Name="process" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="models">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="active" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="shop" Type="varchar" MaxLength="10" />
+          <Property Name="process" Type="varchar" MaxLength="20" />
+          <Property Name="code" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="OverflowResponsible">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seq" Type="int" Nullable="false" />
+          <Property Name="active" Type="int" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+          <Property Name="shop" Type="varchar" MaxLength="10" />
+          <Property Name="process" Type="varchar" MaxLength="20" />
+          <Property Name="idOverflow" Type="int" />
+        </EntityType>
+        <EntityType Name="ResponsibleGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="responsibles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="shop" Type="varchar" MaxLength="5" />
+          <Property Name="process" Type="varchar" MaxLength="10" />
+          <Property Name="active" Type="bit" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="responsibleGroup" Type="int" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="round">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Round" Type="int" Nullable="false" />
+          <Property Name="Shift" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Start_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Finish_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Usage" Type="bit" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="screens">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="shop" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="userRolesMapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="varchar" MaxLength="255" />
+          <Property Name="roleId" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="user_name" Type="varchar" MaxLength="255" />
+          <Property Name="role" Type="varchar" MaxLength="255" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
+          <Property Name="active" Type="bit" />
+          <Property Name="department" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="isPic" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WeldingCoordinates">
+          <Key>
+            <PropertyRef Name="idCoordinate" />
+          </Key>
+          <Property Name="idCoordinate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+          <Property Name="idPart" Type="int" />
+          <Property Name="position" Type="int" />
+          <Property Name="xmin" Type="float" />
+          <Property Name="xmax" Type="float" />
+          <Property Name="ymin" Type="float" />
+          <Property Name="ymax" Type="float" />
+          <Property Name="coordinate" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_AreaCategories_area">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="AreaCategories" Type="Self.AreaCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AreaCategories">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoordinatesReference_area">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="CoordinatesReference" Type="Self.CoordinatesReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CoordinatesReference">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoordinatesReference_locations">
+          <End Role="locations" Type="Self.locations" Multiplicity="1" />
+          <End Role="CoordinatesReference" Type="Self.CoordinatesReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CoordinatesReference">
+              <PropertyRef Name="idLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_defects">
+          <End Role="defects" Type="Self.defects" Multiplicity="1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="defect" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_locations">
+          <End Role="locations" Type="Self.locations" Multiplicity="0..1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_models">
+          <End Role="models" Type="Self.models" Multiplicity="1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="models">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_parts">
+          <End Role="parts" Type="Self.parts" Multiplicity="1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="part" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_responsibles">
+          <End Role="responsibles" Type="Self.responsibles" Multiplicity="1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="responsibles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="responsible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="requestedby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_users1">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="approvedby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_WeldingCoordinates">
+          <End Role="WeldingCoordinates" Type="Self.WeldingCoordinates" Multiplicity="0..1" />
+          <End Role="countermeasures" Type="Self.countermeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeldingCoordinates">
+              <PropertyRef Name="idCoordinate" />
+            </Principal>
+            <Dependent Role="countermeasures">
+              <PropertyRef Name="coordinate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_defects_area">
+          <End Role="area" Type="Self.area" Multiplicity="0..1" />
+          <End Role="defects" Type="Self.defects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="defects">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_area">
+          <End Role="area" Type="Self.area" Multiplicity="0..1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="AREA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_ColorCodes">
+          <End Role="ColorCodes" Type="Self.ColorCodes" Multiplicity="0..1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorCodes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="IDCOLOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_defects">
+          <End Role="defects" Type="Self.defects" Multiplicity="1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="DEFECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_FEEDBACK_DATA">
+          <End Role="models" Type="Self.models" Multiplicity="1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="models">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="CAR_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_locations">
+          <End Role="locations" Type="Self.locations" Multiplicity="1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="LOCATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_parts">
+          <End Role="parts" Type="Self.parts" Multiplicity="1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="PART" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_responsibles">
+          <End Role="responsibles" Type="Self.responsibles" Multiplicity="0..1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="responsibles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="RESPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_screens">
+          <End Role="screens" Type="Self.screens" Multiplicity="0..1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="screens">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="SCREENID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_WeldingCoordinates">
+          <End Role="WeldingCoordinates" Type="Self.WeldingCoordinates" Multiplicity="0..1" />
+          <End Role="FEEDBACK_DATA" Type="Self.FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeldingCoordinates">
+              <PropertyRef Name="idCoordinate" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="IDCOORD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parts_area">
+          <End Role="area" Type="Self.area" Multiplicity="0..1" />
+          <End Role="parts" Type="Self.parts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="parts">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parts_locations">
+          <End Role="parts" Type="Self.parts" Multiplicity="0..1" />
+          <End Role="locations" Type="Self.locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="locations">
+              <PropertyRef Name="partId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parts_OverflowResponsible">
+          <End Role="OverflowResponsible" Type="Self.OverflowResponsible" Multiplicity="0..1" />
+          <End Role="parts" Type="Self.parts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OverflowResponsible">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="parts">
+              <PropertyRef Name="idOverflow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_responsibles_ResponsibleGroup">
+          <End Role="ResponsibleGroup" Type="Self.ResponsibleGroup" Multiplicity="0..1" />
+          <End Role="responsibles" Type="Self.responsibles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponsibleGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="responsibles">
+              <PropertyRef Name="responsibleGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userRolesMapping_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="userRolesMapping" Type="Self.userRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userRolesMapping">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userRolesMapping_userRolesMapping">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="userRolesMapping" Type="Self.userRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userRolesMapping">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="feedbackModelStoreContainer">
+          <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AreaCategories" EntityType="Self.AreaCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorCodes" EntityType="Self.ColorCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoordinatesReference" EntityType="Self.CoordinatesReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countermeasures" EntityType="Self.countermeasures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="defects" EntityType="Self.defects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FEEDBACK_DATA" EntityType="Self.FEEDBACK_DATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="models" EntityType="Self.models" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OverflowResponsible" EntityType="Self.OverflowResponsible" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parts" EntityType="Self.parts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResponsibleGroup" EntityType="Self.ResponsibleGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="responsibles" EntityType="Self.responsibles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="round" EntityType="Self.round" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="screens" EntityType="Self.screens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userRolesMapping" EntityType="Self.userRolesMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeldingCoordinates" EntityType="Self.WeldingCoordinates" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AreaCategories_area" Association="Self.FK_AreaCategories_area">
+            <End Role="area" EntitySet="area" />
+            <End Role="AreaCategories" EntitySet="AreaCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoordinatesReference_area" Association="Self.FK_CoordinatesReference_area">
+            <End Role="area" EntitySet="area" />
+            <End Role="CoordinatesReference" EntitySet="CoordinatesReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoordinatesReference_locations" Association="Self.FK_CoordinatesReference_locations">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="CoordinatesReference" EntitySet="CoordinatesReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_defects" Association="Self.FK_countermeasures_defects">
+            <End Role="defects" EntitySet="defects" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_locations" Association="Self.FK_countermeasures_locations">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_models" Association="Self.FK_countermeasures_models">
+            <End Role="models" EntitySet="models" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_parts" Association="Self.FK_countermeasures_parts">
+            <End Role="parts" EntitySet="parts" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_responsibles" Association="Self.FK_countermeasures_responsibles">
+            <End Role="responsibles" EntitySet="responsibles" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_users" Association="Self.FK_countermeasures_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_users1" Association="Self.FK_countermeasures_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_WeldingCoordinates" Association="Self.FK_countermeasures_WeldingCoordinates">
+            <End Role="WeldingCoordinates" EntitySet="WeldingCoordinates" />
+            <End Role="countermeasures" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_defects_area" Association="Self.FK_defects_area">
+            <End Role="area" EntitySet="area" />
+            <End Role="defects" EntitySet="defects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_area" Association="Self.FK_FEEDBACK_DATA_area">
+            <End Role="area" EntitySet="area" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_ColorCodes" Association="Self.FK_FEEDBACK_DATA_ColorCodes">
+            <End Role="ColorCodes" EntitySet="ColorCodes" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_defects" Association="Self.FK_FEEDBACK_DATA_defects">
+            <End Role="defects" EntitySet="defects" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_FEEDBACK_DATA" Association="Self.FK_FEEDBACK_DATA_FEEDBACK_DATA">
+            <End Role="models" EntitySet="models" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_locations" Association="Self.FK_FEEDBACK_DATA_locations">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_parts" Association="Self.FK_FEEDBACK_DATA_parts">
+            <End Role="parts" EntitySet="parts" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_responsibles" Association="Self.FK_FEEDBACK_DATA_responsibles">
+            <End Role="responsibles" EntitySet="responsibles" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_screens" Association="Self.FK_FEEDBACK_DATA_screens">
+            <End Role="screens" EntitySet="screens" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_users" Association="Self.FK_FEEDBACK_DATA_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_WeldingCoordinates" Association="Self.FK_FEEDBACK_DATA_WeldingCoordinates">
+            <End Role="WeldingCoordinates" EntitySet="WeldingCoordinates" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parts_area" Association="Self.FK_parts_area">
+            <End Role="area" EntitySet="area" />
+            <End Role="parts" EntitySet="parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parts_locations" Association="Self.FK_parts_locations">
+            <End Role="parts" EntitySet="parts" />
+            <End Role="locations" EntitySet="locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parts_OverflowResponsible" Association="Self.FK_parts_OverflowResponsible">
+            <End Role="OverflowResponsible" EntitySet="OverflowResponsible" />
+            <End Role="parts" EntitySet="parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_responsibles_ResponsibleGroup" Association="Self.FK_responsibles_ResponsibleGroup">
+            <End Role="ResponsibleGroup" EntitySet="ResponsibleGroup" />
+            <End Role="responsibles" EntitySet="responsibles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userRolesMapping_roles" Association="Self.FK_userRolesMapping_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="userRolesMapping" EntitySet="userRolesMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userRolesMapping_userRolesMapping" Association="Self.FK_userRolesMapping_userRolesMapping">
+            <End Role="users" EntitySet="users" />
+            <End Role="userRolesMapping" EntitySet="userRolesMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="feedbackModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="feedbackEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="areas" EntityType="feedbackModel.area" />
+          <EntitySet Name="AreaCategories" EntityType="feedbackModel.AreaCategory" />
+          <EntitySet Name="ColorCodes" EntityType="feedbackModel.ColorCode" />
+          <EntitySet Name="CoordinatesReferences" EntityType="feedbackModel.CoordinatesReference" />
+          <EntitySet Name="countermeasures" EntityType="feedbackModel.countermeasure" />
+          <EntitySet Name="defects" EntityType="feedbackModel.defect" />
+          <EntitySet Name="FEEDBACK_DATA" EntityType="feedbackModel.FEEDBACK_DATA" />
+          <EntitySet Name="locations" EntityType="feedbackModel.location" />
+          <EntitySet Name="models" EntityType="feedbackModel.model" />
+          <EntitySet Name="OverflowResponsibles" EntityType="feedbackModel.OverflowResponsible" />
+          <EntitySet Name="parts" EntityType="feedbackModel.part" />
+          <EntitySet Name="ResponsibleGroups" EntityType="feedbackModel.ResponsibleGroup" />
+          <EntitySet Name="responsibles" EntityType="feedbackModel.responsible" />
+          <EntitySet Name="roles" EntityType="feedbackModel.role" />
+          <EntitySet Name="rounds" EntityType="feedbackModel.round" />
+          <EntitySet Name="screens" EntityType="feedbackModel.screen" />
+          <EntitySet Name="userRolesMappings" EntityType="feedbackModel.userRolesMapping" />
+          <EntitySet Name="users" EntityType="feedbackModel.user" />
+          <EntitySet Name="WeldingCoordinates" EntityType="feedbackModel.WeldingCoordinate" />
+          <AssociationSet Name="FK_AreaCategories_area" Association="feedbackModel.FK_AreaCategories_area">
+            <End Role="area" EntitySet="areas" />
+            <End Role="AreaCategory" EntitySet="AreaCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoordinatesReference_area" Association="feedbackModel.FK_CoordinatesReference_area">
+            <End Role="area" EntitySet="areas" />
+            <End Role="CoordinatesReference" EntitySet="CoordinatesReferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_defects_area" Association="feedbackModel.FK_defects_area">
+            <End Role="area" EntitySet="areas" />
+            <End Role="defect" EntitySet="defects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_area" Association="feedbackModel.FK_FEEDBACK_DATA_area">
+            <End Role="area" EntitySet="areas" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parts_area" Association="feedbackModel.FK_parts_area">
+            <End Role="area" EntitySet="areas" />
+            <End Role="part" EntitySet="parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_ColorCodes" Association="feedbackModel.FK_FEEDBACK_DATA_ColorCodes">
+            <End Role="ColorCode" EntitySet="ColorCodes" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoordinatesReference_locations" Association="feedbackModel.FK_CoordinatesReference_locations">
+            <End Role="location" EntitySet="locations" />
+            <End Role="CoordinatesReference" EntitySet="CoordinatesReferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_defects" Association="feedbackModel.FK_countermeasures_defects">
+            <End Role="defect" EntitySet="defects" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_locations" Association="feedbackModel.FK_countermeasures_locations">
+            <End Role="location" EntitySet="locations" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_models" Association="feedbackModel.FK_countermeasures_models">
+            <End Role="model" EntitySet="models" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_parts" Association="feedbackModel.FK_countermeasures_parts">
+            <End Role="part" EntitySet="parts" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_responsibles" Association="feedbackModel.FK_countermeasures_responsibles">
+            <End Role="responsible" EntitySet="responsibles" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_users" Association="feedbackModel.FK_countermeasures_users">
+            <End Role="user" EntitySet="users" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_users1" Association="feedbackModel.FK_countermeasures_users1">
+            <End Role="user" EntitySet="users" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_countermeasures_WeldingCoordinates" Association="feedbackModel.FK_countermeasures_WeldingCoordinates">
+            <End Role="WeldingCoordinate" EntitySet="WeldingCoordinates" />
+            <End Role="countermeasure" EntitySet="countermeasures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_defects" Association="feedbackModel.FK_FEEDBACK_DATA_defects">
+            <End Role="defect" EntitySet="defects" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_FEEDBACK_DATA" Association="feedbackModel.FK_FEEDBACK_DATA_FEEDBACK_DATA">
+            <End Role="model" EntitySet="models" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_locations" Association="feedbackModel.FK_FEEDBACK_DATA_locations">
+            <End Role="location" EntitySet="locations" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_parts" Association="feedbackModel.FK_FEEDBACK_DATA_parts">
+            <End Role="part" EntitySet="parts" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_responsibles" Association="feedbackModel.FK_FEEDBACK_DATA_responsibles">
+            <End Role="responsible" EntitySet="responsibles" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_screens" Association="feedbackModel.FK_FEEDBACK_DATA_screens">
+            <End Role="screen" EntitySet="screens" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_users" Association="feedbackModel.FK_FEEDBACK_DATA_users">
+            <End Role="user" EntitySet="users" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FEEDBACK_DATA_WeldingCoordinates" Association="feedbackModel.FK_FEEDBACK_DATA_WeldingCoordinates">
+            <End Role="WeldingCoordinate" EntitySet="WeldingCoordinates" />
+            <End Role="FEEDBACK_DATA" EntitySet="FEEDBACK_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parts_locations" Association="feedbackModel.FK_parts_locations">
+            <End Role="part" EntitySet="parts" />
+            <End Role="location" EntitySet="locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parts_OverflowResponsible" Association="feedbackModel.FK_parts_OverflowResponsible">
+            <End Role="OverflowResponsible" EntitySet="OverflowResponsibles" />
+            <End Role="part" EntitySet="parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_responsibles_ResponsibleGroup" Association="feedbackModel.FK_responsibles_ResponsibleGroup">
+            <End Role="ResponsibleGroup" EntitySet="ResponsibleGroups" />
+            <End Role="responsible" EntitySet="responsibles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userRolesMapping_roles" Association="feedbackModel.FK_userRolesMapping_roles">
+            <End Role="role" EntitySet="roles" />
+            <End Role="userRolesMapping" EntitySet="userRolesMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userRolesMapping_userRolesMapping" Association="feedbackModel.FK_userRolesMapping_userRolesMapping">
+            <End Role="user" EntitySet="users" />
+            <End Role="userRolesMapping" EntitySet="userRolesMappings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AreaCategories" Relationship="feedbackModel.FK_AreaCategories_area" FromRole="area" ToRole="AreaCategory" />
+          <NavigationProperty Name="CoordinatesReferences" Relationship="feedbackModel.FK_CoordinatesReference_area" FromRole="area" ToRole="CoordinatesReference" />
+          <NavigationProperty Name="defects" Relationship="feedbackModel.FK_defects_area" FromRole="area" ToRole="defect" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_area" FromRole="area" ToRole="FEEDBACK_DATA" />
+          <NavigationProperty Name="parts" Relationship="feedbackModel.FK_parts_area" FromRole="area" ToRole="part" />
+        </EntityType>
+        <EntityType Name="AreaCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idArea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="feedbackModel.FK_AreaCategories_area" FromRole="AreaCategory" ToRole="area" />
+        </EntityType>
+        <EntityType Name="ColorCode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="color" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_ColorCodes" FromRole="ColorCode" ToRole="FEEDBACK_DATA" />
+        </EntityType>
+        <EntityType Name="CoordinatesReference">
+          <Key>
+            <PropertyRef Name="idCoordinate" />
+          </Key>
+          <Property Name="idCoordinate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArea" Type="Int32" Nullable="false" />
+          <Property Name="Side" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="xmin" Type="Double" Nullable="false" />
+          <Property Name="xmax" Type="Double" Nullable="false" />
+          <Property Name="ymin" Type="Double" Nullable="false" />
+          <Property Name="ymax" Type="Double" Nullable="false" />
+          <Property Name="idLocation" Type="Int32" Nullable="false" />
+          <Property Name="position" Type="Int32" />
+          <Property Name="version" Type="Int32" />
+          <NavigationProperty Name="area" Relationship="feedbackModel.FK_CoordinatesReference_area" FromRole="CoordinatesReference" ToRole="area" />
+          <NavigationProperty Name="location" Relationship="feedbackModel.FK_CoordinatesReference_locations" FromRole="CoordinatesReference" ToRole="location" />
+        </EntityType>
+        <EntityType Name="countermeasure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="model" Type="Int32" Nullable="false" />
+          <Property Name="part" Type="Int32" Nullable="false" />
+          <Property Name="defect" Type="Int32" Nullable="false" />
+          <Property Name="location" Type="Int32" />
+          <Property Name="coordinate" Type="Int32" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="responsible" Type="Int32" Nullable="false" />
+          <Property Name="countermeasure1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="duedate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="regdt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="requestedby" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cfile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="approveddt" Type="DateTime" Precision="0" />
+          <Property Name="approvedby" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="bodyno" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="defect1" Relationship="feedbackModel.FK_countermeasures_defects" FromRole="countermeasure" ToRole="defect" />
+          <NavigationProperty Name="location1" Relationship="feedbackModel.FK_countermeasures_locations" FromRole="countermeasure" ToRole="location" />
+          <NavigationProperty Name="model1" Relationship="feedbackModel.FK_countermeasures_models" FromRole="countermeasure" ToRole="model" />
+          <NavigationProperty Name="part1" Relationship="feedbackModel.FK_countermeasures_parts" FromRole="countermeasure" ToRole="part" />
+          <NavigationProperty Name="responsible1" Relationship="feedbackModel.FK_countermeasures_responsibles" FromRole="countermeasure" ToRole="responsible" />
+          <NavigationProperty Name="user" Relationship="feedbackModel.FK_countermeasures_users" FromRole="countermeasure" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="feedbackModel.FK_countermeasures_users1" FromRole="countermeasure" ToRole="user" />
+          <NavigationProperty Name="WeldingCoordinate" Relationship="feedbackModel.FK_countermeasures_WeldingCoordinates" FromRole="countermeasure" ToRole="WeldingCoordinate" />
+        </EntityType>
+        <EntityType Name="defect">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seq" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="shop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idArea" Type="Int32" />
+          <NavigationProperty Name="area" Relationship="feedbackModel.FK_defects_area" FromRole="defect" ToRole="area" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_defects" FromRole="defect" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_defects" FromRole="defect" ToRole="FEEDBACK_DATA" />
+        </EntityType>
+        <EntityType Name="FEEDBACK_DATA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CAR_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="BODY_NO" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PART" Type="Int32" Nullable="false" />
+          <Property Name="DEFECT" Type="Int32" Nullable="false" />
+          <Property Name="LOCATION" Type="Int32" Nullable="false" />
+          <Property Name="ROUND" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RESPONSIBLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PROCESS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="STDT" Type="DateTime" Precision="0" />
+          <Property Name="ENDT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RGDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="COMMENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PICTURE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PICTUREPATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RESPID" Type="Int32" />
+          <Property Name="USERID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SCREENID" Type="Int32" />
+          <Property Name="AREA" Type="Int32" />
+          <Property Name="SHIFT" Type="Int32" />
+          <Property Name="SIDE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IDCOORD" Type="Int32" />
+          <Property Name="IDCOLOR" Type="Int32" />
+          <Property Name="LINE" Type="Int32" />
+          <NavigationProperty Name="area1" Relationship="feedbackModel.FK_FEEDBACK_DATA_area" FromRole="FEEDBACK_DATA" ToRole="area" />
+          <NavigationProperty Name="ColorCode" Relationship="feedbackModel.FK_FEEDBACK_DATA_ColorCodes" FromRole="FEEDBACK_DATA" ToRole="ColorCode" />
+          <NavigationProperty Name="defect1" Relationship="feedbackModel.FK_FEEDBACK_DATA_defects" FromRole="FEEDBACK_DATA" ToRole="defect" />
+          <NavigationProperty Name="model" Relationship="feedbackModel.FK_FEEDBACK_DATA_FEEDBACK_DATA" FromRole="FEEDBACK_DATA" ToRole="model" />
+          <NavigationProperty Name="location1" Relationship="feedbackModel.FK_FEEDBACK_DATA_locations" FromRole="FEEDBACK_DATA" ToRole="location" />
+          <NavigationProperty Name="part1" Relationship="feedbackModel.FK_FEEDBACK_DATA_parts" FromRole="FEEDBACK_DATA" ToRole="part" />
+          <NavigationProperty Name="responsible1" Relationship="feedbackModel.FK_FEEDBACK_DATA_responsibles" FromRole="FEEDBACK_DATA" ToRole="responsible" />
+          <NavigationProperty Name="screen" Relationship="feedbackModel.FK_FEEDBACK_DATA_screens" FromRole="FEEDBACK_DATA" ToRole="screen" />
+          <NavigationProperty Name="user" Relationship="feedbackModel.FK_FEEDBACK_DATA_users" FromRole="FEEDBACK_DATA" ToRole="user" />
+          <NavigationProperty Name="WeldingCoordinate" Relationship="feedbackModel.FK_FEEDBACK_DATA_WeldingCoordinates" FromRole="FEEDBACK_DATA" ToRole="WeldingCoordinate" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seq" Type="Int32" Nullable="false" />
+          <Property Name="partId" Type="Int32" />
+          <Property Name="active" Type="Int32" Nullable="false" />
+          <Property Name="shop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CoordinatesReferences" Relationship="feedbackModel.FK_CoordinatesReference_locations" FromRole="location" ToRole="CoordinatesReference" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_locations" FromRole="location" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_locations" FromRole="location" ToRole="FEEDBACK_DATA" />
+          <NavigationProperty Name="part" Relationship="feedbackModel.FK_parts_locations" FromRole="location" ToRole="part" />
+        </EntityType>
+        <EntityType Name="model">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="active" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_models" FromRole="model" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_FEEDBACK_DATA" FromRole="model" ToRole="FEEDBACK_DATA" />
+        </EntityType>
+        <EntityType Name="OverflowResponsible">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="parts" Relationship="feedbackModel.FK_parts_OverflowResponsible" FromRole="OverflowResponsible" ToRole="part" />
+        </EntityType>
+        <EntityType Name="part">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seq" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Int32" Nullable="false" />
+          <Property Name="idArea" Type="Int32" />
+          <Property Name="shop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idOverflow" Type="Int32" />
+          <NavigationProperty Name="area" Relationship="feedbackModel.FK_parts_area" FromRole="part" ToRole="area" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_parts" FromRole="part" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_parts" FromRole="part" ToRole="FEEDBACK_DATA" />
+          <NavigationProperty Name="locations" Relationship="feedbackModel.FK_parts_locations" FromRole="part" ToRole="location" />
+          <NavigationProperty Name="OverflowResponsible" Relationship="feedbackModel.FK_parts_OverflowResponsible" FromRole="part" ToRole="OverflowResponsible" />
+        </EntityType>
+        <EntityType Name="ResponsibleGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="responsibles" Relationship="feedbackModel.FK_responsibles_ResponsibleGroup" FromRole="ResponsibleGroup" ToRole="responsible" />
+        </EntityType>
+        <EntityType Name="responsible">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shop" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="process" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="responsibleGroup" Type="Int32" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_responsibles" FromRole="responsible" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_responsibles" FromRole="responsible" ToRole="FEEDBACK_DATA" />
+          <NavigationProperty Name="ResponsibleGroup1" Relationship="feedbackModel.FK_responsibles_ResponsibleGroup" FromRole="responsible" ToRole="ResponsibleGroup" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="roleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="userRolesMappings" Relationship="feedbackModel.FK_userRolesMapping_roles" FromRole="role" ToRole="userRolesMapping" />
+        </EntityType>
+        <EntityType Name="round">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Round1" Type="Int32" Nullable="false" />
+          <Property Name="Shift" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Start_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Finish_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Usage" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="screen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shop" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_screens" FromRole="screen" ToRole="FEEDBACK_DATA" />
+        </EntityType>
+        <EntityType Name="userRolesMapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="roleId" Type="Int32" />
+          <NavigationProperty Name="role" Relationship="feedbackModel.FK_userRolesMapping_roles" FromRole="userRolesMapping" ToRole="role" />
+          <NavigationProperty Name="user" Relationship="feedbackModel.FK_userRolesMapping_userRolesMapping" FromRole="userRolesMapping" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isPic" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_users" FromRole="user" ToRole="countermeasure" />
+          <NavigationProperty Name="countermeasures1" Relationship="feedbackModel.FK_countermeasures_users1" FromRole="user" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_users" FromRole="user" ToRole="FEEDBACK_DATA" />
+          <NavigationProperty Name="userRolesMappings" Relationship="feedbackModel.FK_userRolesMapping_userRolesMapping" FromRole="user" ToRole="userRolesMapping" />
+        </EntityType>
+        <EntityType Name="WeldingCoordinate">
+          <Key>
+            <PropertyRef Name="idCoordinate" />
+          </Key>
+          <Property Name="idCoordinate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArea" Type="Int32" />
+          <Property Name="idPart" Type="Int32" />
+          <Property Name="position" Type="Int32" />
+          <Property Name="xmin" Type="Double" />
+          <Property Name="xmax" Type="Double" />
+          <Property Name="ymin" Type="Double" />
+          <Property Name="ymax" Type="Double" />
+          <Property Name="coordinate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="countermeasures" Relationship="feedbackModel.FK_countermeasures_WeldingCoordinates" FromRole="WeldingCoordinate" ToRole="countermeasure" />
+          <NavigationProperty Name="FEEDBACK_DATA" Relationship="feedbackModel.FK_FEEDBACK_DATA_WeldingCoordinates" FromRole="WeldingCoordinate" ToRole="FEEDBACK_DATA" />
+        </EntityType>
+        <Association Name="FK_AreaCategories_area">
+          <End Type="feedbackModel.area" Role="area" Multiplicity="1" />
+          <End Type="feedbackModel.AreaCategory" Role="AreaCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AreaCategory">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoordinatesReference_area">
+          <End Type="feedbackModel.area" Role="area" Multiplicity="1" />
+          <End Type="feedbackModel.CoordinatesReference" Role="CoordinatesReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CoordinatesReference">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_defects_area">
+          <End Type="feedbackModel.area" Role="area" Multiplicity="0..1" />
+          <End Type="feedbackModel.defect" Role="defect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="defect">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_area">
+          <End Type="feedbackModel.area" Role="area" Multiplicity="0..1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="AREA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parts_area">
+          <End Type="feedbackModel.area" Role="area" Multiplicity="0..1" />
+          <End Type="feedbackModel.part" Role="part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="part">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_ColorCodes">
+          <End Type="feedbackModel.ColorCode" Role="ColorCode" Multiplicity="0..1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColorCode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="IDCOLOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoordinatesReference_locations">
+          <End Type="feedbackModel.location" Role="location" Multiplicity="1" />
+          <End Type="feedbackModel.CoordinatesReference" Role="CoordinatesReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CoordinatesReference">
+              <PropertyRef Name="idLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_defects">
+          <End Type="feedbackModel.defect" Role="defect" Multiplicity="1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defect">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="defect" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_locations">
+          <End Type="feedbackModel.location" Role="location" Multiplicity="0..1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_models">
+          <End Type="feedbackModel.model" Role="model" Multiplicity="1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="model">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_parts">
+          <End Type="feedbackModel.part" Role="part" Multiplicity="1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="part">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="part" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_responsibles">
+          <End Type="feedbackModel.responsible" Role="responsible" Multiplicity="1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="responsible">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="responsible" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_users">
+          <End Type="feedbackModel.user" Role="user" Multiplicity="1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="requestedby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_users1">
+          <End Type="feedbackModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="approvedby" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_countermeasures_WeldingCoordinates">
+          <End Type="feedbackModel.WeldingCoordinate" Role="WeldingCoordinate" Multiplicity="0..1" />
+          <End Type="feedbackModel.countermeasure" Role="countermeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeldingCoordinate">
+              <PropertyRef Name="idCoordinate" />
+            </Principal>
+            <Dependent Role="countermeasure">
+              <PropertyRef Name="coordinate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_defects">
+          <End Type="feedbackModel.defect" Role="defect" Multiplicity="1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defect">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="DEFECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_FEEDBACK_DATA">
+          <End Type="feedbackModel.model" Role="model" Multiplicity="1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="model">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="CAR_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_locations">
+          <End Type="feedbackModel.location" Role="location" Multiplicity="1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="LOCATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_parts">
+          <End Type="feedbackModel.part" Role="part" Multiplicity="1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="part">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="PART" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_responsibles">
+          <End Type="feedbackModel.responsible" Role="responsible" Multiplicity="0..1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="responsible">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="RESPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_screens">
+          <End Type="feedbackModel.screen" Role="screen" Multiplicity="0..1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="screen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="SCREENID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_users">
+          <End Type="feedbackModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FEEDBACK_DATA_WeldingCoordinates">
+          <End Type="feedbackModel.WeldingCoordinate" Role="WeldingCoordinate" Multiplicity="0..1" />
+          <End Type="feedbackModel.FEEDBACK_DATA" Role="FEEDBACK_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeldingCoordinate">
+              <PropertyRef Name="idCoordinate" />
+            </Principal>
+            <Dependent Role="FEEDBACK_DATA">
+              <PropertyRef Name="IDCOORD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parts_locations">
+          <End Type="feedbackModel.part" Role="part" Multiplicity="0..1" />
+          <End Type="feedbackModel.location" Role="location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="part">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="partId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parts_OverflowResponsible">
+          <End Type="feedbackModel.OverflowResponsible" Role="OverflowResponsible" Multiplicity="0..1" />
+          <End Type="feedbackModel.part" Role="part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OverflowResponsible">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="part">
+              <PropertyRef Name="idOverflow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_responsibles_ResponsibleGroup">
+          <End Type="feedbackModel.ResponsibleGroup" Role="ResponsibleGroup" Multiplicity="0..1" />
+          <End Type="feedbackModel.responsible" Role="responsible" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponsibleGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="responsible">
+              <PropertyRef Name="responsibleGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userRolesMapping_roles">
+          <End Type="feedbackModel.role" Role="role" Multiplicity="0..1" />
+          <End Type="feedbackModel.userRolesMapping" Role="userRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userRolesMapping">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userRolesMapping_userRolesMapping">
+          <End Type="feedbackModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="feedbackModel.userRolesMapping" Role="userRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userRolesMapping">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="feedbackModelStoreContainer" CdmEntityContainer="feedbackEntities">
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="feedbackModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AreaCategories">
+            <EntityTypeMapping TypeName="feedbackModel.AreaCategory">
+              <MappingFragment StoreEntitySet="AreaCategories">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorCodes">
+            <EntityTypeMapping TypeName="feedbackModel.ColorCode">
+              <MappingFragment StoreEntitySet="ColorCodes">
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoordinatesReferences">
+            <EntityTypeMapping TypeName="feedbackModel.CoordinatesReference">
+              <MappingFragment StoreEntitySet="CoordinatesReference">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="idLocation" ColumnName="idLocation" />
+                <ScalarProperty Name="ymax" ColumnName="ymax" />
+                <ScalarProperty Name="ymin" ColumnName="ymin" />
+                <ScalarProperty Name="xmax" ColumnName="xmax" />
+                <ScalarProperty Name="xmin" ColumnName="xmin" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="idCoordinate" ColumnName="idCoordinate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countermeasures">
+            <EntityTypeMapping TypeName="feedbackModel.countermeasure">
+              <MappingFragment StoreEntitySet="countermeasures">
+                <ScalarProperty Name="bodyno" ColumnName="bodyno" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="approvedby" ColumnName="approvedby" />
+                <ScalarProperty Name="approveddt" ColumnName="approveddt" />
+                <ScalarProperty Name="cfile" ColumnName="cfile" />
+                <ScalarProperty Name="requestedby" ColumnName="requestedby" />
+                <ScalarProperty Name="regdt" ColumnName="regdt" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+                <ScalarProperty Name="countermeasure1" ColumnName="countermeasure" />
+                <ScalarProperty Name="responsible" ColumnName="responsible" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="coordinate" ColumnName="coordinate" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="defect" ColumnName="defect" />
+                <ScalarProperty Name="part" ColumnName="part" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="defects">
+            <EntityTypeMapping TypeName="feedbackModel.defect">
+              <MappingFragment StoreEntitySet="defects">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FEEDBACK_DATA">
+            <EntityTypeMapping TypeName="feedbackModel.FEEDBACK_DATA">
+              <MappingFragment StoreEntitySet="FEEDBACK_DATA">
+                <ScalarProperty Name="LINE" ColumnName="LINE" />
+                <ScalarProperty Name="IDCOLOR" ColumnName="IDCOLOR" />
+                <ScalarProperty Name="IDCOORD" ColumnName="IDCOORD" />
+                <ScalarProperty Name="SIDE" ColumnName="SIDE" />
+                <ScalarProperty Name="SHIFT" ColumnName="SHIFT" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+                <ScalarProperty Name="SCREENID" ColumnName="SCREENID" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="RESPID" ColumnName="RESPID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PICTUREPATH" ColumnName="PICTUREPATH" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+                <ScalarProperty Name="RGDT" ColumnName="RGDT" />
+                <ScalarProperty Name="ENDT" ColumnName="ENDT" />
+                <ScalarProperty Name="STDT" ColumnName="STDT" />
+                <ScalarProperty Name="PROCESS" ColumnName="PROCESS" />
+                <ScalarProperty Name="RESPONSIBLE" ColumnName="RESPONSIBLE" />
+                <ScalarProperty Name="ROUND" ColumnName="ROUND" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="DEFECT" ColumnName="DEFECT" />
+                <ScalarProperty Name="PART" ColumnName="PART" />
+                <ScalarProperty Name="BODY_NO" ColumnName="BODY_NO" />
+                <ScalarProperty Name="CAR_TYPE" ColumnName="CAR_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="feedbackModel.location">
+              <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="partId" ColumnName="partId" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="models">
+            <EntityTypeMapping TypeName="feedbackModel.model">
+              <MappingFragment StoreEntitySet="models">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OverflowResponsibles">
+            <EntityTypeMapping TypeName="feedbackModel.OverflowResponsible">
+              <MappingFragment StoreEntitySet="OverflowResponsible">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parts">
+            <EntityTypeMapping TypeName="feedbackModel.part">
+              <MappingFragment StoreEntitySet="parts">
+                <ScalarProperty Name="idOverflow" ColumnName="idOverflow" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResponsibleGroups">
+            <EntityTypeMapping TypeName="feedbackModel.ResponsibleGroup">
+              <MappingFragment StoreEntitySet="ResponsibleGroup">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="responsibles">
+            <EntityTypeMapping TypeName="feedbackModel.responsible">
+              <MappingFragment StoreEntitySet="responsibles">
+                <ScalarProperty Name="responsibleGroup" ColumnName="responsibleGroup" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="feedbackModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rounds">
+            <EntityTypeMapping TypeName="feedbackModel.round">
+              <MappingFragment StoreEntitySet="round">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="Finish_time" ColumnName="Finish_time" />
+                <ScalarProperty Name="Start_time" ColumnName="Start_time" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="Round1" ColumnName="Round" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="screens">
+            <EntityTypeMapping TypeName="feedbackModel.screen">
+              <MappingFragment StoreEntitySet="screens">
+                <ScalarProperty Name="shop" ColumnName="shop" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userRolesMappings">
+            <EntityTypeMapping TypeName="feedbackModel.userRolesMapping">
+              <MappingFragment StoreEntitySet="userRolesMapping">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="feedbackModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="isPic" ColumnName="isPic" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeldingCoordinates">
+            <EntityTypeMapping TypeName="feedbackModel.WeldingCoordinate">
+              <MappingFragment StoreEntitySet="WeldingCoordinates">
+                <ScalarProperty Name="coordinate" ColumnName="coordinate" />
+                <ScalarProperty Name="ymax" ColumnName="ymax" />
+                <ScalarProperty Name="ymin" ColumnName="ymin" />
+                <ScalarProperty Name="xmax" ColumnName="xmax" />
+                <ScalarProperty Name="xmin" ColumnName="xmin" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="idPart" ColumnName="idPart" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="idCoordinate" ColumnName="idCoordinate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="true" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams />
+  </edmx:Designer>
+</edmx:Edmx>

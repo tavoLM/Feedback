@@ -1,0 +1,4 @@
+2021-04-12 08:16:14,570 [7] INFO IQISService.Controllers.DefectController - get defect: DL  360971
+2021-04-12 08:16:14,580 [7] INFO IQISService.Services.DefectRepository - getDefectsByBodyNo: DL  360971
+2021-04-12 12:30:10,633 [19] INFO IQISService.Controllers.QualityDataController - get defect: DL  347084
+2021-04-12 12:30:10,670 [19] INFO IQISService.Services.QualityDataRepository - getDefectsByBodyNo: DL  347084

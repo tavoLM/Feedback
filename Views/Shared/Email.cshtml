@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <style type="text/css">
+        .wrapper {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            grid-template-rows: 150px 300px;
+            grid-gap: 10px;
+        }
+
+        .one {
+            grid-column: 1 / 3;
+            grid-row: 1;
+            padding: 20px;
+        }
+
+        .two {
+            grid-column: 1 / 1;
+            grid-row: 2;
+        }
+
+        .three {
+            grid-column: 2/2;
+            grid-row: 2;
+            padding: 20px;
+        }
+
+        .border {
+            border: 2px solid gray;
+            border-radius: 25px;
+        }
+
+        .background {
+            background: #021764;
+            color: white;
+        }
+
+        #grad1 {
+            font-size: 160%;
+            background-image: linear-gradient(to right,gray, transparent);
+        }
+
+        #table1 th {
+            border: 1px solid gray;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        th {
+            font-size: 100%;
+            height: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #imgDefect {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body style=" margin: 0 !important; padding: 0 !important;">
+
+    <div class="wrapper">
+        <div class="one border background">
+            <div id="grad1">FEEDBACK SYSTEM ALERT</div>
+            <table id="table1">
+                <thead>
+                <th>Model</th>
+                <th>Body No</th>
+                <th>Part</th>
+                <th>Defect</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{BODY_MODEL}</td>
+                        <td>{BODY_BODYNO}</td>
+                        <td>{BODY_PART}</td>
+                        <td>{BODY_DEFECT}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="two border ">
+            <img class="imgDefect" width=100% height=100% src="{BODY_IMAGE}" />
+        </div>
+        <div class="three border background">
+            <div id="grad1">Comments:</div>
+            <div style="height:40%; font-size:24px">{BODY_COMMENTS}</div>
+
+        </div>
+    </div>
+
+</body>
+</html>

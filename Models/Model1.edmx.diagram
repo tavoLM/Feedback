@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5919e9144ff241c09b42b1b2bbd792f5" Name="Diagram1">
+        <EntityTypeShape EntityType="feedbackModel.area" Width="1.5" PointX="0.75" PointY="13.375" />
+        <EntityTypeShape EntityType="feedbackModel.AreaCategory" Width="1.5" PointX="3" PointY="24.25" />
+        <EntityTypeShape EntityType="feedbackModel.ColorCode" Width="1.5" PointX="6" PointY="25.625" />
+        <EntityTypeShape EntityType="feedbackModel.CoordinatesReference" Width="1.5" PointX="6" PointY="13.25" />
+        <EntityTypeShape EntityType="feedbackModel.countermeasure" Width="1.5" PointX="5.25" PointY="18.25" />
+        <EntityTypeShape EntityType="feedbackModel.defect" Width="1.5" PointX="3" PointY="20.375" />
+        <EntityTypeShape EntityType="feedbackModel.FEEDBACK_DATA" Width="1.5" PointX="8.25" PointY="14.5" />
+        <EntityTypeShape EntityType="feedbackModel.location" Width="1.5" PointX="5.25" PointY="9.375" />
+        <EntityTypeShape EntityType="feedbackModel.model" Width="1.5" PointX="6" PointY="5.5" />
+        <EntityTypeShape EntityType="feedbackModel.OverflowResponsible" Width="1.5" PointX="0.75" PointY="10.125" />
+        <EntityTypeShape EntityType="feedbackModel.part" Width="1.5" PointX="3" PointY="13.125" />
+        <EntityTypeShape EntityType="feedbackModel.ResponsibleGroup" Width="1.5" PointX="2.5" PointY="32.125" />
+        <EntityTypeShape EntityType="feedbackModel.responsible" Width="1.5" PointX="6" PointY="31.875" />
+        <EntityTypeShape EntityType="feedbackModel.role" Width="1.5" PointX="6" PointY="40.5" />
+        <EntityTypeShape EntityType="feedbackModel.round" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="feedbackModel.screen" Width="1.5" PointX="6" PointY="2" />
+        <EntityTypeShape EntityType="feedbackModel.userRolesMapping" Width="1.5" PointX="8.25" PointY="36.25" />
+        <EntityTypeShape EntityType="feedbackModel.user" Width="1.5" PointX="6" PointY="35.5" />
+        <EntityTypeShape EntityType="feedbackModel.WeldingCoordinate" Width="1.5" PointX="6" PointY="28" />
+        <AssociationConnector Association="feedbackModel.FK_AreaCategories_area" />
+        <AssociationConnector Association="feedbackModel.FK_CoordinatesReference_area" />
+        <AssociationConnector Association="feedbackModel.FK_defects_area" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_area" />
+        <AssociationConnector Association="feedbackModel.FK_parts_area" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_ColorCodes" />
+        <AssociationConnector Association="feedbackModel.FK_CoordinatesReference_locations" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_defects" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_locations" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_models" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_parts" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_responsibles" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_users" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_users1" />
+        <AssociationConnector Association="feedbackModel.FK_countermeasures_WeldingCoordinates" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_defects" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_FEEDBACK_DATA" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_locations" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_parts" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_responsibles" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_screens" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_users" />
+        <AssociationConnector Association="feedbackModel.FK_FEEDBACK_DATA_WeldingCoordinates" />
+        <AssociationConnector Association="feedbackModel.FK_parts_locations" />
+        <AssociationConnector Association="feedbackModel.FK_parts_OverflowResponsible" />
+        <AssociationConnector Association="feedbackModel.FK_responsibles_ResponsibleGroup" />
+        <AssociationConnector Association="feedbackModel.FK_userRolesMapping_roles" />
+        <AssociationConnector Association="feedbackModel.FK_userRolesMapping_userRolesMapping" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
